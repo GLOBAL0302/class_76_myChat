@@ -7,7 +7,24 @@ interface Props {
 }
 
 const OneMessages: React.FC<Props> = ({ oneMessage }) => {
-  const correctDate = dayjs(oneMessage.datetime).format('YYYY-MM-DD HH:mm:ss');
+  let correctDate = '';
+  const currentDate = new Date();
+  const test = new Date(oneMessage.datetime);
+  const yesterday = currentDate.getDate() - 1 === test.getDate();
+  const monthCheck = currentDate.getMonth() !== test.getMonth();
+  const yearCheck = currentDate.getFullYear() !== test.getFullYear();
+  if (yesterday) {
+    correctDate += ' Yesterday';
+  }
+  if (!yesterday && monthCheck) {
+    correctDate += dayjs(oneMessage.datetime).format('MM-DD');
+  }
+  if (!yesterday && !monthCheck && yearCheck) {
+    correctDate += dayjs(oneMessage.datetime).format('YYYY');
+  }
+  if (!yesterday && !monthCheck && !yearCheck) {
+    correctDate += `Today ${dayjs(oneMessage.datetime).format('HH:mm:ss')}`;
+  }
 
   return (
     <Box
@@ -30,7 +47,7 @@ const OneMessages: React.FC<Props> = ({ oneMessage }) => {
         </Grid2>
         <Grid2>
           <Typography variant="body2" component="span">
-            <strong>Date:</strong> <span style={{ textDecoration: 'underline' }}>{correctDate}</span>
+            <strong>Date:</strong> {correctDate}
           </Typography>
         </Grid2>
       </Grid2>

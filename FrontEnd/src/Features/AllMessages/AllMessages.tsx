@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid2 } from '@mui/material';
+import { Box, CircularProgress, Grid2, Typography } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchMessagesThunk } from './messagesThunk';
@@ -16,7 +16,7 @@ const AllMessages = () => {
 
   useEffect(() => {
     void fetchAllMessages();
-  }, [dispatch, fetchAllMessages]);
+  }, [fetchAllMessages]);
 
   return (
     <Box
@@ -40,7 +40,18 @@ const AllMessages = () => {
           ) : (
             <>
               {allMessages.length === 0 ? (
-                'No Messages'
+                <>
+                  <Typography
+                    color={'error'}
+                    sx={{ textDecoration: 'underline' }}
+                    variant="h5"
+                    component="h5"
+                    textAlign="center"
+                    margin="30px"
+                  >
+                    No Messages Yet
+                  </Typography>
+                </>
               ) : (
                 <>
                   {allMessages.map((message) => (

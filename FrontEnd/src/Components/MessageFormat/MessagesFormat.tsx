@@ -19,8 +19,8 @@ const MessagesFormat = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await dispatch(postMessageThunk(messageForm));
-    await dispatch(fetchMessagesThunk());
     setMessageForm(initialState);
+    await dispatch(fetchMessagesThunk());
   };
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
