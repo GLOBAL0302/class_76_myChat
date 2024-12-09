@@ -27,8 +27,8 @@ messagesRouter.post('/', async (req: express.Request, res: express.Response) => 
   }
 
   const newMessage = {
-    message: req.body.message,
-    author: req.body.author,
+    message: req.body.message[0].toUpperCase() + req.body.message.slice(1).toLowerCase(),
+    author: req.body.author[0].toUpperCase() + req.body.author.slice(1).toLowerCase(),
   };
 
   const saveMessage = await fileDb.addMessage(newMessage);

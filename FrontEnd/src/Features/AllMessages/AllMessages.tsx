@@ -18,29 +18,39 @@ const AllMessages = () => {
     void fetchAllMessages();
   }, [dispatch, fetchAllMessages]);
 
-
   return (
     <Box
       sx={{
         marginBottom: '40px',
-        border: "10px solid silver",
+        border: '10px solid silver',
       }}
-      component="div">
-      <Grid2 sx={{
-        height: '500px',
-        overflowY: 'auto',
-      }}>
+      component="div"
+    >
+      <Grid2
+        sx={{
+          height: '500px',
+          overflowY: 'auto',
+        }}
+      >
         <>
-          {messagesLoading ?
+          {messagesLoading ? (
             <Grid2 container justifyContent="center" alignItems="center" component="div">
               <CircularProgress />
-            </Grid2> : <>
-              {allMessages.length === 0 ? "No Messages" : <>{allMessages.map((message) => (
-                <OneMessages key={message.id} oneMessage={message} />
-              ))}</>}
-            </>}
+            </Grid2>
+          ) : (
+            <>
+              {allMessages.length === 0 ? (
+                'No Messages'
+              ) : (
+                <>
+                  {allMessages.map((message) => (
+                    <OneMessages key={message.id} oneMessage={message} />
+                  ))}
+                </>
+              )}
+            </>
+          )}
         </>
-
       </Grid2>
     </Box>
   );

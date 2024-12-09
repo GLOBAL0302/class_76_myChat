@@ -3,7 +3,7 @@ import { messageReducer } from '../Features/AllMessages/messagesSlice';
 
 export const store = configureStore({
   reducer: {
-    messages:messageReducer
+    messages: messageReducer,
   },
 });
 
