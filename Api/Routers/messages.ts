@@ -1,6 +1,5 @@
 import express from 'express';
 import fileDb from '../fileDB';
-import { log } from 'node:util';
 
 const messagesRouter = express.Router();
 messagesRouter.get('/', async (req: express.Request, res: express.Response) => {
